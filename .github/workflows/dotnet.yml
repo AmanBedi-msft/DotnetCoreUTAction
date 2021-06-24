@@ -25,6 +25,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: Show Files
       run: |
+          cd UnitTestableAPITests
           dir
     - name: Codecov
       uses: codecov/codecov-action@v1.5.2
@@ -32,8 +33,8 @@ jobs:
         # Repository upload token - get it from codecov.io. Required only for private repositories
         token: ${{ secrets.CODECOV_TOKEN }}
         # Comma-separated list of files to upload
-        #files: # optional
+        files: ./coverage.opencover.xml
         # Directory to search for coverage reports.
-        #directory: # optional
+        directory: ./UnitTestableAPITests
         # Flag upload to group coverage metrics (e.g. unittests | integration | ui,chrome)
         #flags: # optional
