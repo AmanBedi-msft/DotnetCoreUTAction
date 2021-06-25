@@ -27,6 +27,11 @@ jobs:
       run: |
           cd UnitTestableAPITests
           dir
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1.18
+      if: always()
+      with:
+       files: /**/*.xml
     - name: Codecov
       uses: codecov/codecov-action@v1.5.2
       #with:
