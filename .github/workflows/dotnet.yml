@@ -23,8 +23,8 @@ jobs:
     #  run: dotnet build --no-restore
     - name: Test
       run: |
-       cd ./UnitTestableAPITests/
-       dotnet test /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+       #cd ./UnitTestableAPITests/
+       dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: Show Files
       run: |
           cd UnitTestableAPITests
@@ -37,6 +37,6 @@ jobs:
         # Comma-separated list of files to upload
         #files: ./coverage.opencover.xml
         # Directory to search for coverage reports.
-        directory: ./TestResults
+        #directory: ./TestResults
         # Flag upload to group coverage metrics (e.g. unittests | integration | ui,chrome)
         #flags: # optional
