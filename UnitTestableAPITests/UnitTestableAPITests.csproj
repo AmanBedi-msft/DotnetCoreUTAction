@@ -23,7 +23,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\UnitTestableAPI\UnitTestableAPI.csproj" />
   </ItemGroup>
