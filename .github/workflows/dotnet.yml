@@ -17,23 +17,26 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    #- name: Restore dependencies
-    #  run: dotnet restore
-    #- name: Build
-    #  run: dotnet build --no-restore
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
     - name: Test
-      run: |
-       #cd ./UnitTestableAPITests/
-       dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: Show Files
       run: |
           cd UnitTestableAPITests
           dir
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1.18
+      if: always()
+      with:
+       files: UnitTestableAPITests/coverage.opencover.xml
     - name: Codecov
       uses: codecov/codecov-action@v1.5.2
-      with:
+      #with:
         # Repository upload token - get it from codecov.io. Required only for private repositories
-        token: ${{ secrets.CODECOV_TOKEN }}
+        #token: ${{ secrets.CODECOV_TOKEN }}
         # Comma-separated list of files to upload
         #files: ./coverage.opencover.xml
         # Directory to search for coverage reports.
