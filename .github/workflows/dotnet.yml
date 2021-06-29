@@ -44,7 +44,7 @@ jobs:
       with:
        log_level: DEBUG
        root_log_level: DEBUG
-       files: UnitTestableAPITests/Results/coverage.opencover.xml
+       files: UnitTestableAPITests/coverage.opencover.xml
     - name: Codecov
       uses: codecov/codecov-action@v1.5.2
       #with:
