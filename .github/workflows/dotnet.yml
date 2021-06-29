@@ -22,16 +22,29 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      run: dotnet test --no-build --verbosity normal --results-directory "UnitTestableAPITests\Results" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
     - name: Show Files
       run: |
-          cd UnitTestableAPITests
+          cd UnitTestableAPITests/Results
           dir
+    #- name: Unity Test Publisher
+      # You may pin to the exact commit or the version.
+      # uses: rainbow-duck-games/unity-test-publisher@b9d1363111caa478662a0dd406ae13c04db4bcf6
+      #uses: rainbow-duck-games/unity-test-publisher@v0.2.3
+      #with:
+       #reportWorkspace: # optional
+       # glob expression to find Unity test reports, default - `artifact/*.xml`
+       #reportPaths: # optional, default is artifacts/*.xml
+       # prefix on build machine to ignore in report, default - `/github/workspace/`
+       #workdirPrefix: # optional, default is /github/workspace/
+       # check name for test reports
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1.18
       if: always()
       with:
-       files: UnitTestableAPITests/coverage.opencover.xml
+       log_level: DEBUG
+       root_log_level: DEBUG
+       files: UnitTestableAPITests/Results/coverage.opencover.xml
     - name: Codecov
       uses: codecov/codecov-action@v1.5.2
       #with:
