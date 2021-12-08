@@ -1,0 +1,18 @@
+name: Dummy echo
+description: 'dummy reusable echo action'
+
+inputs:
+  app_url:
+    description: 'Url of the application'
+    required: true
+  
+runs:
+  using: "composite"
+
+  steps:
+    - run: echo Deploying ${{ inputs.app_url }}
+      shell: bash
+
+    - name: Preparing Git
+      shell: bash
+      run: echo 'dummy step'

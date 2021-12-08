@@ -64,3 +64,7 @@ jobs:
         with:
           name: unit-test-report
           path: UnitTestableAPITests/Reports
+      - name: "Display url"
+        uses: ./.github/actions
+        with:
+          app_url: ${{secrets.target_url }}
