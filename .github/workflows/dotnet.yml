@@ -7,71 +7,22 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-dev:
+    environment: # Environment to which the application will be deployed.
+      name: dev
+    name: build dotnet app dev
+    uses: AmanBedi-msft/DotnetCoreUTAction/tree/main/.github/workflows/build.yml@main
+    with:
+      runs-on: ubuntu-latest
+    secrets:
+      target_url: ${{secrets.SUPER_IMP_URL}}
 
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Install reportgenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.8.1
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-    - name: Show Files
-      run: |
-          cd UnitTestableAPITests
-          dir
-    - name: dotnet-tests-report
-      uses: zyborg/dotnet-tests-report@v1.4.4
-      with:
-       project_path: UnitTestableAPITests
-       report_name: my_project_tests
-       report_title: My Project Tests
-       github_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Generate report
-      working-directory: ./UnitTestableAPITests
-      run: reportgenerator -reports:./*.xml -targetdir:./Reports
-    - name: Create report artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: unit-test-report
-        path: UnitTestableAPITests/Reports
-      #fail_build_on_failed_tests: # optional
-    #- name: Unity Test Publisher
-      # You may pin to the exact commit or the version.
-      # uses: rainbow-duck-games/unity-test-publisher@b9d1363111caa478662a0dd406ae13c04db4bcf6
-      #uses: rainbow-duck-games/unity-test-publisher@v0.2.3
-      #with:
-       #reportWorkspace: # optional
-       # glob expression to find Unity test reports, default - `artifact/*.xml`
-       #reportPaths: UnitTestableAPITests/coverage.opencover.xml
-       # optional, default is artifacts/*.xml
-       # prefix on build machine to ignore in report, default - `/github/workspace/`
-       #workdirPrefix: # optional, default is /github/workspace/
-       # check name for test reports
-    #- name: Publish Unit Test Results
-    #  uses: EnricoMi/publish-unit-test-result-action@v1.18
-    # if: always()
-    #  with:
-    #   log_level: DEBUG
-    #   root_log_level: DEBUG
-    #   files: UnitTestableAPITests/coverage.json
-    #- name: Codecov
-    #  uses: codecov/codecov-action@v1.5.2
-    #  #with:
-        # Repository upload token - get it from codecov.io. Required only for private repositories
-        #token: ${{ secrets.CODECOV_TOKEN }}
-        # Comma-separated list of files to upload
-        #files: ./coverage.opencover.xml
-        # Directory to search for coverage reports.
-        #directory: ./TestResults
-        # Flag upload to group coverage metrics (e.g. unittests | integration | ui,chrome)
-        #flags: # optional
+  build-int:
+    environment: # Environment to which the application will be deployed.
+      name: int
+    name: build dotnet app int
+    uses: AmanBedi-msft/DotnetCoreUTAction/tree/main/.github/workflows/build.yml@main
+    with:
+      runs-on: ubuntu-latest
+    secrets:
+      target_url: ${{secrets.SUPER_IMP_URL}}
