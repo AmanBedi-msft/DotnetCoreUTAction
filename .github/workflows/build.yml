@@ -44,13 +44,13 @@ jobs:
         run: |
             cd UnitTestableAPITests
             dir
-      - name: dotnet-tests-report
-        uses: zyborg/dotnet-tests-report@v1.5.0
-        with:
-        project_path: UnitTestableAPITests
-        report_name: my_project_tests
-        report_title: My Project Tests
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: dotnet-tests-report
+      #   uses: zyborg/dotnet-tests-report@v1.5.0
+      #   with:
+      #   project_path: UnitTestableAPITests
+      #   report_name: my_project_tests
+      #   report_title: My Project Tests
+      #   github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Generate report
         working-directory: ./UnitTestableAPITests
         run: reportgenerator -reports:./*.xml -targetdir:./Reports
