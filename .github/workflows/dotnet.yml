@@ -11,8 +11,7 @@ jobs:
   build-dev:
     name: build-dev-release
     # runs-on: ubuntu-latest
-    environment:
-      name: dev
+    environment: dev
     uses: AmanBedi-msft/DotnetCoreUTAction/.github/workflows/build.yml@main
     with:
       runs-on: ubuntu-latest
