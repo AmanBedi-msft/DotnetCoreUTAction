@@ -9,9 +9,9 @@ on:
 jobs:
   build-dev:
     name: build-dev-release
-    runs-on: ubuntu-latest
-    environment: # Environment to which the application will be deployed.
-      name: dev
+    # runs-on: ubuntu-latest
+    # environment: # Environment to which the application will be deployed.
+    #   name: dev
     uses: AmanBedi-msft/DotnetCoreUTAction/.github/workflows/build.yml@main
     with:
       runs-on: ubuntu-latest
