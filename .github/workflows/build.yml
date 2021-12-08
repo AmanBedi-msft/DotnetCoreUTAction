@@ -3,6 +3,11 @@ name: Build dotnet application
 on:
   workflow_call:
     inputs:
+      targetenv:
+        description: Target env
+        type: string
+        default: dev
+
       dotnet-version:
         description: Version of dotnet to use
         type: string
@@ -20,7 +25,7 @@ on:
 jobs:
   build:
     name: Build dotnet app
-    
+    environment: ${{ inputs.targetenv }}
     runs-on: ${{ inputs.runs-on }}
     
     steps:
