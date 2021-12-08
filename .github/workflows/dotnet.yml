@@ -11,7 +11,7 @@ jobs:
     environment: # Environment to which the application will be deployed.
       name: dev
     name: build dotnet app dev
-    uses: AmanBedi-msft/DotnetCoreUTAction/tree/main/.github/workflows/build.yml@main
+    uses: AmanBedi-msft/DotnetCoreUTAction/.github/workflows/build.yml@main
     with:
       runs-on: ubuntu-latest
     secrets:
@@ -21,7 +21,7 @@ jobs:
     environment: # Environment to which the application will be deployed.
       name: int
     name: build dotnet app int
-    uses: AmanBedi-msft/DotnetCoreUTAction/tree/main/.github/workflows/build.yml@main
+    uses: AmanBedi-msft/DotnetCoreUTAction/.github/workflows/build.yml@main
     with:
       runs-on: ubuntu-latest
     secrets:
