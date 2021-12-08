@@ -45,7 +45,7 @@ jobs:
             cd UnitTestableAPITests
             dir
       - name: dotnet-tests-report
-        uses: zyborg/dotnet-tests-report@v1.4.4
+        uses: zyborg/dotnet-tests-report@v1.5.0
         with:
         project_path: UnitTestableAPITests
         report_name: my_project_tests
